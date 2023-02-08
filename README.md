@@ -16,6 +16,8 @@ This project is a command-line application bulit from scratch to manage a compan
 
 ## Installation
 The following necessary dependencies must be installed to be able to run this application:
+
+
     * In your CL, run 'npm i inquirer@8.2.4' to install the Inquirer package --> (https://www.npmjs.com/package/inquirer/v/8.2.4).
 
     * In your CL, run 'npm i mysql2' to install the MySQL2 package so as to connect to a MySQL database --> (https://www.npmjs.com/package/mysql2).
@@ -26,7 +28,7 @@ The following necessary dependencies must be installed to be able to run this ap
 ## Usage
 A Database schema has been designed as shown in the following image:
 
-![Database schema includes tables labeled “employee,” role,” and “department.”](./Assets/12-sql-homework-demo-01.png)
+
 
 This schema contains the following three tables:
 
