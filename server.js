@@ -1,12 +1,16 @@
 const inquirer = require('inquirer');
 const db = require('./db/connection');
-const mysql2 = require('mysql2');
+//const mysql2 = require('mysql2');
 const express = require('express');
-const { connection } = require('./db');
-const router = express.Router();
+const connection = require('./db');
+//const router = express.Router();
 
 
-db.connect(async function () {
+db.connect(async function (error) {
+    if (error) {
+        console.log(error)
+        throw error
+    }
     start();
 })
 
@@ -15,11 +19,11 @@ function start() {
         {
             type: 'list',
             name: 'choice',
-            message: 'Select an option.',
+            message: 'What would you like to do?',
             choices: [
-                'View Employees',
-                'View Roles',
-                'View Departments',
+                'View All Employees',
+                'View All Roles',
+                'View All Departments',
                 'Add New Employee',
                 'Add Role',
                 'Add Department',
@@ -31,15 +35,15 @@ function start() {
         .then((answer) => {
             switch (answer.choice) {
                 
-                case 'View Employees':
+                case 'View All Employees':
                     
                     viewEmployees();
                     break;
-                case 'View Roles':
+                case 'View All Roles':
 
                     viewRoles();
                     break;
-                case 'View Departments':
+                case 'View All Departments':
 
                     viewDepartments();
                     break;
@@ -143,11 +147,11 @@ function viewDepartments() {
             }
         ])
        .then((answer) => {
-           switch (answer.choice){
+          switch (answer.choice){
                case 'Main Menu':
-                   start();
-                   break;
-                   case 'Quit':
+                  start();
+                    break;
+                    case 'Quit':
                        Quit();
            }
        })
@@ -169,8 +173,8 @@ function newEmployee() {
         },
         {
             type: 'input',
-            message: 'Enter employee ID number',
-            name: 'EmployeeID'
+            message: 'Enter role ID',
+            name: 'RoleID'
         },
         {
             type: 'input',
@@ -181,7 +185,7 @@ function newEmployee() {
     ])
     .then(function (response) {
         connection.query('INSERT INTO employees(first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?)', 
-        [response.FirstName, response.LastName, response.EmployeeID, response.ManagerID]), function(err,response) {
+        [response.FirstName, response.LastName, response.RoleID, response.ManagerID]), function(err,response) {
             if (err) throw err;
             console.table(res);
             inquirer.prompt([

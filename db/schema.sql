@@ -6,7 +6,6 @@ USE business;
 
 CREATE TABLE department (
     id INT AUTO_INCREMENT,
-    roles_id INT,
     department_name VARCHAR(29) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -28,6 +27,6 @@ CREATE TABLE employees (
     roles_id INT,
     manager_id INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(manager_id),
-    REFERENCES employees (id)
+    FOREIGN KEY(manager_id) REFERENCES employees (id),
+    FOREIGN KEY(roles_id) REFERENCES roles (id)
 );
