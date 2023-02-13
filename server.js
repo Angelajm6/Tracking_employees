@@ -19,12 +19,12 @@ function start() {
         {
             type: 'list',
             name: 'choice',
-            message: 'What would you like to do?',
+            message: 'Select an option.',
             choices: [
-                'View All Employees',
-                'View All Roles',
-                'View All Departments',
-                'Add New Employee',
+                'View Employees',
+                'View Roles',
+                'View Departments',
+                'Add Employee',
                 'Add Role',
                 'Add Department',
                 'Quit'
@@ -35,19 +35,19 @@ function start() {
         .then((answer) => {
             switch (answer.choice) {
                 
-                case 'View All Employees':
+                case 'View Employees':
                     
                     viewEmployees();
                     break;
-                case 'View All Roles':
+                case 'View Roles':
 
                     viewRoles();
                     break;
-                case 'View All Departments':
+                case 'View Departments':
 
                     viewDepartments();
                     break;
-                case 'Add New Employee':
+                case 'Add Employee':
 
                     newEmployee();
                     break;
@@ -184,9 +184,10 @@ function newEmployee() {
         
     ])
     .then(function (response) {
-        connection.query('INSERT INTO employees(first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?)', 
-        [response.FirstName, response.LastName, response.RoleID, response.ManagerID]), function(err,response) {
+        db.query('INSERT INTO employees(first_name, last_name, roles_id, manager_id) VALUES (?,?,?,?)', 
+        [response.FirstName, response.LastName, response.RoleID, response.ManagerID], function(err,res, fields) {
             if (err) throw err;
+            console.log(fields);
             console.table(res);
             inquirer.prompt([
                 {
@@ -208,7 +209,7 @@ function newEmployee() {
                            Quit();
                }
            })
-        }
+        })
     })
 }
 
