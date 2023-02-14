@@ -64,6 +64,12 @@ This schema contains the following three tables:
 The following video shows an example of the application being used from the command line:
 
 
+
+[Tracking-employees.webm](https://user-images.githubusercontent.com/109991922/218636621-f4dd780e-4747-44d3-85ea-516eb9deb105.webm)
+
+
+
+
 ## License
 This project is licensed under the MIT License. 
 
